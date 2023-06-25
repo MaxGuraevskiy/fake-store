@@ -9,25 +9,6 @@ import { ProductsService } from './services/product.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'Fake Shop';
-  // products: IProduct[] = [];
-  loading = false;
-  products$: Observable<IProduct[]>;
-  term = '';
+export class AppComponent{
 
-
-
-  ngOnInit(): void {
-    this.loading = true;
-    this.products$ = this.productsService
-      .getAll()
-      .pipe(tap(() => (this.loading = false)));
-    // this.productsService.getAll().subscribe((products) => {
-    //   this.products = products;
-    //   this.loading = false;
-    // });
-  }
-
-  constructor(private productsService: ProductsService, public modalService: ModalService) {}
 }
