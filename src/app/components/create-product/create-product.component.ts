@@ -19,6 +19,12 @@ export class CreateProductComponent implements OnInit {
       Validators.required,
       Validators.minLength(6),
     ]),
+    description: new FormControl<string>(''),
+    price: new FormControl<number>(0),
+    count: new FormControl<number>(0),
+    category: new FormControl<string>(''),
+    image: new FormControl<string>(''),
+    rate: new FormControl<number>(0, [Validators.min(0), Validators.max(10)]),
   });
 
   get title() {
@@ -31,13 +37,13 @@ export class CreateProductComponent implements OnInit {
     this.productService
       .create({
         title: this.form.value.title as string,
-        price: 13.5,
-        description: 'lorem ipsum set',
-        image: 'https://i.pravatar.cc',
-        category: 'electronic',
+        price: this.form.value.price as number,
+        description: this.form.value.description as string,
+        image: this.form.value.image as string,
+        category: this.form.value.category as string,
         rating: {
-          rate: 42,
-          count: 1,
+          rate: this.form.value.rate as number,
+          count: this.form.value.count as number,
         },
       })
       .subscribe(() => {

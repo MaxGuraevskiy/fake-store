@@ -1,4 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="flex flex-col items-center"
+>
   <input
     type="text"
     class="border w-full py-2 px-4 mb-2"
@@ -13,5 +17,53 @@
   >
     Please fill title field width min length. Now {{ title.value.length }}
   </p>
-  <button type="submit" class="py-2 px-4 bg-blue-600 text-white">Create</button>
+
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Description"
+    formControlName="description"
+  />
+
+  <p class="font-medium">Please, set price</p>
+  <input
+    type="number"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Price"
+    formControlName="price"
+  />
+
+  <p class="font-medium">Please, set count</p>
+  <input
+    type="number"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Count"
+    formControlName="count"
+  />
+
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Category"
+    formControlName="category"
+  />
+
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Image URL"
+    formControlName="image"
+  />
+
+  <p class="font-medium">Please, set rate</p>
+  <input
+    type="number"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Rate"
+    formControlName="rate"
+  />
+
+  <button type="submit" class="py-2 px-4 bg-blue-600 text-white rounded">
+    Create
+  </button>
 </form>

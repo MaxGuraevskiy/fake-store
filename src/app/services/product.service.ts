@@ -20,12 +20,11 @@ export class ProductsService {
     return this.http
       .get<IProduct[]>('https://fakestoreapi.com/products', {
         params: new HttpParams({
-          fromObject: { limit: 5 },
+          fromObject: { limit: 15 },
         }),
       })
       .pipe(
         delay(200),
-        retry(2),
         tap((products) => (this.products = products)),
         catchError(this.errorHandler.bind(this))
       );
@@ -40,12 +39,30 @@ export class ProductsService {
   getOne(id: number): Observable<IProduct> {
     return this.http
       .get<IProduct>('https://fakestoreapi.com/products/' + id)
-      .pipe(delay(200), retry(2), catchError(this.errorHandler.bind(this)));
+      .pipe(delay(200),  catchError(this.errorHandler.bind(this)));
   }
 
-  getCategories() {}
+  getCategories() {
+    return this.http
+      .get<string[]>('https://fakestoreapi.com/products/categories')
+      .pipe(catchError(this.errorHandler.bind(this)));
+  }
 
-  getProductsWithCategories() {}
+  getProductsWithCategories(category: string) {
+    return this.http
+      .get<IProduct[]>(
+        'https://fakestoreapi.com/products/category/' + category,
+        {
+          params: new HttpParams({
+            fromObject: { limit: 15 },
+          }),
+        }
+      )
+      .pipe(
+        tap((products) => (this.products = products)),
+        catchError(this.errorHandler.bind(this))
+      );
+  }
 
   private errorHandler(error: HttpErrorResponse) {
     this.errorService.handle(error.message);

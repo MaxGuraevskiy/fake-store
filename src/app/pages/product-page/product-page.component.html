@@ -9,14 +9,31 @@
   [(ngModel)]="term"
 />
 
+<select
+  name="select"
+  class="border w-full px-2 py-1"
+  (change)="selected($event.target)"
+>
+  <!--Supplement an id here instead of using 'name'-->
+  <option hidden disabled selected value>all categories</option>
+  <option
+    *ngFor="let category of categories; let i = index"
+    value="{{ category }}"
+  >
+    {{ category }}
+  </option>
+</select>
 
+<h1>{{ category }}</h1>
 
 <p *ngIf="loading" class="text-center text-lg">Loading...</p>
 
-<div *ngIf="productsService.products">
+<div *ngIf="productsService.products" class="mt-6">
   <app-product
     *ngFor="
-      let product of productsService.products | filterProducts : term;
+      let product of productsService.products
+        | filterProducts : term : category;
+      categories: [0];
       let i = index
     "
     [product]="product"

@@ -11,6 +11,8 @@ export class ProductPageComponent implements OnInit {
   title = 'Fake Shop';
   // products: IProduct[] = [];
   loading = false;
+  categories: string[] = [];
+  category: string = '';
   // products$: Observable<IProduct[]>;
   term = '';
 
@@ -22,6 +24,16 @@ export class ProductPageComponent implements OnInit {
     this.productsService.getAll().subscribe((products) => {
       this.loading = false;
     });
+
+    this.productsService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
+  }
+
+  selected(value: EventTarget | null) {
+    if (value) {
+      this.category = (value as HTMLInputElement).value;
+    }
   }
 
   constructor(
