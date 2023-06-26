@@ -37,6 +37,16 @@ export class ProductsService {
       .pipe(tap((prod) => this.products.push(prod)));
   }
 
+  getOne(id: number): Observable<IProduct> {
+    return this.http
+      .get<IProduct>('https://fakestoreapi.com/products/' + id)
+      .pipe(delay(200), retry(2), catchError(this.errorHandler.bind(this)));
+  }
+
+  getCategories() {}
+
+  getProductsWithCategories() {}
+
   private errorHandler(error: HttpErrorResponse) {
     this.errorService.handle(error.message);
     return throwError(() => error.message);

@@ -1,0 +1,35 @@
+<div class="py-4 px-6 border rounded flex items-center flex-col shadow">
+  <img [src]="item.image" [alt]="item.title" class="w-1/2 mb-2" />
+  <h1 class="mb-1 text-md text-center font-bold">{{ item.title }}</h1>
+  <h3 class="mb-2 text-md text-center">{{ item.category }}</h3>
+  <p>
+    Price: <span class="font-bold">{{ item.price | currency : "$" }}</span>
+  </p>
+
+  <div>
+    <p>{{ item.description }}</p>
+    <p>
+      Rate:
+      <span [ngStyle]="{ fontWeight: 'bold' }">{{
+        item.rating.rate | number : "1.1"
+      }}</span>
+    </p>
+    <p>
+      Count:
+      <span [ngStyle]="{ fontWeight: 'bold' }">{{
+        item.rating.count | number
+      }}</span>
+    </p>
+  </div>
+</div>
+
+<!-- {
+    id: 1,
+    title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+    price: 109.95,
+    description:
+      'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
+    category: "men's clothing",
+    image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+    rating: { rate: 3.9, count: 120 },
+  } -->

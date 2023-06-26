@@ -1,8 +1,10 @@
-<div class="py-4 px-6 border rounded flex items-center flex-col mb-2">
+<div
+  class="py-4 px-6 border rounded flex items-center flex-col mb-2 hover:scale-110 bg-white"
+>
   <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2" />
   <h2 class="mb-2 text-md text-center">{{ product.title }}</h2>
   <p>
-    Price: <span class="font-bold">{{ product.price | currency : "RUB" }}</span>
+    Price: <span class="font-bold">{{ product.price | currency : "$" }}</span>
   </p>
 
   <button
@@ -21,8 +23,14 @@
     <p>
       Rate:
       <span [ngStyle]="{ fontWeight: 'bold' }">{{
-        product.rating.rate | number:'1.2'
+        product.rating.rate | number : "1.1"
       }}</span>
     </p>
   </div>
+  <a
+    [routerLink]="['/item/', product.id]"
+    class="mt-2 border py-2 px-4 rounded"
+  >
+    More Details
+  </a>
 </div>

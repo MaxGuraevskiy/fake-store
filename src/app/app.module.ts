@@ -15,6 +15,7 @@ import { FocusDirective } from './directives/focus.directive';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ItemPageComponent } from './pages/item-page/item-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ProductPageComponent,
     AboutPageComponent,
     NavigationComponent,
+    ItemPageComponent,
   ],
   imports: [
     CommonModule,
